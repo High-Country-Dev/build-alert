@@ -1,14 +1,43 @@
 import { PrismaClient } from "@prisma/client";
 
-import { env } from "../env.mjs";
+declare global {
+  /* eslint-disable no-var */
+  var prisma: PrismaClient | undefined;
+  /* eslint-enable no-var */
+}
 
-const globalForPrisma = globalThis as unknown as { prisma: PrismaClient };
+const client = new PrismaClient({
+  log: [
+    {
+      emit: "event",
+      level: "query",
+    },
+    {
+      emit: "stdout",
+      level: "error",
+    },
+    {
+      emit: "stdout",
+      level: "info",
+    },
+    {
+      emit: "stdout",
+      level: "warn",
+    },
+  ],
+});
 
-export const prisma =
-  globalForPrisma.prisma ||
-  new PrismaClient({
-    log:
-      env.NODE_ENV === "development" ? ["query", "error", "warn"] : ["error"],
+const LOGGING = process.env.NODE_ENV !== "production";
+if (LOGGING) {
+  client.$on("query", (e) => {
+    console.log("Query: " + e.query);
+    console.log("Params: " + e.params);
+    console.log("Duration: " + e.duration + "ms");
   });
+}
 
-if (env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
+export const prisma = global.prisma || client;
+
+if (process.env.NODE_ENV !== "production") {
+  global.prisma = prisma;
+}
