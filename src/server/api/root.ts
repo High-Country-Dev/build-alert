@@ -1,6 +1,7 @@
-import { createTRPCRouter } from "./trpc";
-import { exampleRouter } from "./routers/example";
 import { alertRouter } from "./routers/alert";
+import { easBuildRouter as easRouter } from "./routers/easBuild";
+import { exampleRouter } from "./routers/example";
+import { createTRPCRouter } from "./trpc";
 
 /**
  * This is the primary router for your server.
@@ -10,6 +11,7 @@ import { alertRouter } from "./routers/alert";
 export const appRouter = createTRPCRouter({
   example: exampleRouter,
   alert: alertRouter,
+  eas: easRouter,
 });
 
 // export type definition of API
