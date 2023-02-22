@@ -1,4 +1,5 @@
 import { alertRouter } from "./routers/alert";
+import { awsSnsRouter } from "./routers/awsSns";
 import { easBuildRouter as easRouter } from "./routers/easBuild";
 import { exampleRouter } from "./routers/example";
 import { createTRPCRouter } from "./trpc";
@@ -12,6 +13,7 @@ export const appRouter = createTRPCRouter({
   example: exampleRouter,
   alert: alertRouter,
   eas: easRouter,
+  awsSns: awsSnsRouter,
 });
 
 // export type definition of API
