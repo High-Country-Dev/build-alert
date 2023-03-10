@@ -1,0 +1,60 @@
+{
+  "id": "",
+  "accountName": "mountain_dev",
+  "projectName": "geopass",
+  "buildDetailsPageUrl": "",
+  "parentBuildId": null,
+  "appId": "",
+  "initiatingUserId": "",
+  "cancelingUserId": null,
+  "platform": "ios",
+  "status": "finished",
+  "artifacts": {
+    "buildUrl": ""
+  },
+  "metadata": {
+    "appName": "Geopass",
+    "workflow": "generic",
+    "appVersion": "1.3.0",
+    "appBuildVersion": "73",
+    "cliVersion": "2.9.0",
+    "sdkVersion": "46.0.0",
+    "buildProfile": "prod",
+    "distribution": "store",
+    "appIdentifier": "",
+    "gitCommitHash": "",
+    "gitCommitMessage": "Merge branch 'dev'",
+    "runtimeVersion": "1",
+    "channel": "prod",
+    "reactNativeVersion": "0.69.6",
+    "trackingContext": {
+      "platform": "ios",
+      "account_id": "",
+      "dev_client": false,
+      "project_id": "",
+      "tracking_id": "",
+      "project_type": "generic",
+      "dev_client_version": "1.3.1"
+    },
+    "credentialsSource": "remote",
+    "isGitWorkingTreeDirty": true,
+    "runFromCI": true
+  },
+  "metrics": {
+    "buildEndTimestamp": 1678416039987,
+    "buildStartTimestamp": 1678415328628,
+    "buildEnqueuedTimestamp": 1678415133406
+  },
+  "error": null,
+  "createdAt": "2023-03-10T02:25:34.439Z",
+  "enqueuedAt": "2023-03-10T02:25:33.406Z",
+  "provisioningStartedAt": "2023-03-10T02:26:56.238Z",
+  "workerStartedAt": "2023-03-10T02:28:48.673Z",
+  "completedAt": "2023-03-10T02:40:39.993Z",
+  "updatedAt": "2023-03-10T02:40:42.562Z",
+  "expirationDate": "2023-04-09T02:25:34.439Z",
+  "priority": "high",
+  "resourceClass": "ios-i7-8700B-3-12",
+  "actualResourceClass": "ios-i7-8700B-3-12",
+  "maxRetryTimeMinutes": 180
+}
