@@ -7,7 +7,8 @@ import { z } from "zod";
 const server = z.object({
   DATABASE_URL: z.string().url(),
   NODE_ENV: z.enum(["development", "test", "production"]),
-  SLACK_WEBHOOK: z.string().url(),
+  SLACK_WEBHOOK_MOUNTAIN_DEV_BUILDS: z.string().url(),
+  SLACK_WEBHOOK_HIVETRACKS_QA: z.string().url(),
 });
 
 /**
@@ -27,7 +28,9 @@ const client = z.object({
 const processEnv = {
   DATABASE_URL: process.env.DATABASE_URL,
   NODE_ENV: process.env.NODE_ENV,
-  SLACK_WEBHOOK: process.env.SLACK_WEBHOOK,
+  SLACK_WEBHOOK_MOUNTAIN_DEV_BUILDS:
+    process.env.SLACK_WEBHOOK_MOUNTAIN_DEV_BUILDS,
+  SLACK_WEBHOOK_HIVETRACKS_QA: process.env.SLACK_WEBHOOK_HIVETRACKS_QA,
   // NEXT_PUBLIC_CLIENTVAR: process.env.NEXT_PUBLIC_CLIENTVAR,
 };
 
