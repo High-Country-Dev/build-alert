@@ -1,3 +1,4 @@
+import { env } from "env.mjs";
 import { z } from "zod";
 import { createTRPCRouter, publicProcedure } from "../trpc";
 import { buildPayloadSchema, submitPayloadSchema } from "../types/payloads";
@@ -14,7 +15,11 @@ export const easBuildRouter = createTRPCRouter({
         message += `\n ${input.metadata.appVersion} (${input.metadata.appBuildVersion}, ${input.metadata.buildProfile})`;
       }
       const link = input.buildDetailsPageUrl ?? undefined;
-      await sendSlackMessage({ message, link });
+      await sendSlackMessage({
+        message,
+        link,
+        url: env.SLACK_WEBHOOK_MOUNTAIN_DEV_BUILDS,
+      });
 
       return true;
     }),
@@ -23,9 +28,18 @@ export const easBuildRouter = createTRPCRouter({
     .input(submitPayloadSchema)
     .output(z.boolean())
     .mutation(async ({ input }) => {
-      let message = `*${input.projectName}* ${input.platform} build *${input.status}*`;
+      let message = `*${input.projectName}* ${input.platform} submission *${input.status}*`;
       const link = input.submissionDetailsPageUrl ?? undefined;
-      await sendSlackMessage({ message, link });
+      await sendSlackMessage({
+        message,
+        link,
+        url: env.SLACK_WEBHOOK_MOUNTAIN_DEV_BUILDS,
+      });
+      await sendSlackMessage({
+        message,
+        link,
+        url: env.SLACK_WEBHOOK_HIVETRACKS_QA,
+      });
       return true;
     }),
 });
