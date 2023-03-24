@@ -21,6 +21,15 @@ export const easBuildRouter = createTRPCRouter({
         url: env.SLACK_WEBHOOK_MOUNTAIN_DEV_BUILDS,
       });
 
+      if (input.status === "finished") {
+        await sendSlackMessage({
+          message,
+          link,
+          url: env.SLACK_WEBHOOK_HIVETRACKS_QA,
+        });
+      }
+
+      console.log("input", input);
       return true;
     }),
   submitPayload: publicProcedure
@@ -35,11 +44,15 @@ export const easBuildRouter = createTRPCRouter({
         link,
         url: env.SLACK_WEBHOOK_MOUNTAIN_DEV_BUILDS,
       });
-      await sendSlackMessage({
-        message,
-        link,
-        url: env.SLACK_WEBHOOK_HIVETRACKS_QA,
-      });
+      if (input.status === "finished") {
+        await sendSlackMessage({
+          message,
+          link,
+          url: env.SLACK_WEBHOOK_HIVETRACKS_QA,
+        });
+      }
+
+      console.log("input", input);
       return true;
     }),
 });
